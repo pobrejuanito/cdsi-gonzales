@@ -1,0 +1,686 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="Gonzales Dental Care" />
+	<meta name="description" content="Dr. Ha Jung Kim provides Dental Implants, Teeth Whitening, Invisalign, Dental Emergencies, Cosmetic Dentist, Veneers, Toothache to the following locations: Prunedale, Gonzales, Soledad." />
+	<link href="{% static 'images/favicon.ico' %}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<!-- Stylesheets
+	============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/dark.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+	<!-- External JavaScripts
+	============================================= -->
+	<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/angular.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/angular-messages.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/contactApp.js' %}"></script>
+	<!-- Document Title
+	============================================= -->
+	<title>Gonzales Family Dental Care, Dr. Kim</title>
+</head>
+<body class="stretched" ng-app="avaApp">
+
+	<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header
+		============================================= -->
+		<header id="header" class="transparent-header page-section">
+
+			<div id="header-wrap">
+
+				<div class="container clearfix">
+
+					<div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+					<!-- Logo
+					============================================= -->
+					<div id="logo">
+						<a href="/" class="standard-logo" data-dark-logo="{% static 'images/logo-dark.png' %}"><img src="{% static 'images/logo.png' %}" alt="Canvas Logo"></a>
+						<a href="/" class="retina-logo" data-dark-logo="{% static 'images/logo-dark@2x.png' %}"><img src="{% static 'images/logo@2x.png' %}" alt="Canvas Logo"></a>
+					</div><!-- #logo end -->
+
+					<!-- Primary Navigation
+					============================================= -->
+					<nav id="primary-menu">
+
+						<ul class="one-page-menu">
+							<li><a href="#" data-href="#section-about"><div>About</div></a></li>
+							<li><a href="#" data-href="#section-specials"><div>Specials</div></a></li>
+							<li><a href="#" data-href="#section-testimonials"><div>Testimonials</div></a></li>
+							<li><a href="#" data-href="#section-contact"><div>Contact</div></a></li>
+						</ul>
+
+					</nav><!-- #primary-menu end -->
+
+				</div>
+
+			</div>
+
+		</header><!-- #header end -->
+
+		<section id="slider" style="background: url({% static 'images/landing/landing2.jpg' %}) center; overflow: visible;" data-height-lg="500" data-height-md="500" data-height-sm="600" data-height-xs="600" data-height-xxs="600">
+			<div class="container clearfix">
+
+				<form action="#" method="post" role="form" class="landing-wide-form landing-form-overlay dark nobottommargin clearfix">
+					<div class="heading-block nobottommargin nobottomborder">
+						<h2>Appointments</h2>
+						<span><i class="icon-phone-sign"></i> Call Us (831) 240-0865</span>
+					</div>
+					<div class="line" style="margin: 20px 0 30px;"></div>
+					<div class="heading-block nobottommargin nobottomborder">
+						<h2>Office Hours</h2>
+					</div>
+					<div class="col_full" style="font-size:18px">
+						Sunday: By Appointment Only<br/>
+						Monday: 9 - 4<br/>
+						Tuesday: 11 - 7<br/>
+						Wednesday: 11 - 7<br/>
+						Thursday: 11 - 7<br/>
+						Friday: 8 - 4<br/>
+						Saturday: Closed<br/>
+						Habla Español
+					</div>
+					<div class="col_full nobottommargin">
+						<a href="#" data-toggle="modal" data-target="#contactFormModal" class="btn btn-lg btn-danger btn-block nomargin">MAKE APPOINTMENT</a>
+					</div>
+				</form>
+
+			</div>
+		</section>
+
+		<!-- Appointment Form -->
+		<!-- modal contact form -->
+		<div ng-controller="contactFormController as contact" class="modal fade" id="contactFormModal" tabindex="-1" role="dialog" aria-labelledby="contactFormModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="contactFormModalLabel">Make Appointment</h4>
+					</div>
+					<div class="modal-body" ng-show="is_sent">
+							Message sent. We'll get back to you shortly. You may close this dialog.
+					</div>
+					<div class="modal-body" ng-show="!is_sent">
+							<p>Fill out the form below and a member of our team will contact you within one (1) business day at the phone number provided to schedule your appointment. We will make every attempt possible to accommodate your appointment request and look forward to seeing you soon!</p>
+							<form class="nobottommargin" id="contactform" name="contactform" novalidate>
+								{% csrf_token %}
+								<div class="form-process"></div>
+								<div class="col_half">
+									<label for="contactform-name">Name <small>*</small></label>
+									<input ng-model="contact.name" type="text" id="contactform-name" name="contact_name" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="contactform.contact_name.$error" ng-show="contactform.contact_name.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+								<div class="col_half col_last">
+									<label for="contactform-email">Email <small>*</small></label>
+									<input ng-model="contact.email" type="email" id="contactform-email" name="contact_email" class="required email sm-form-control" required />
+									<div class="help-block" ng-messages="contactform.contact_email.$error" ng-show="contactform.contact_email.$touched">
+										<div ng-message="required">This field is required</div>
+										<div ng-message="email">Your email address is invalid</div>
+									</div>
+								</div>
+								<div class="col_half">
+									<label for="contactform-name">Phone Number <small>*</small></label>
+									<input ng-model="contact.phone" type="text" id="contactform-phone" name="contact_phone" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="contactform.contact_phone.$error" ng-show="contactform.contact_phone.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+								<div class="col_half col_last">
+									<label for="contactform-time">Preferred Time <small></small></label>
+									<select ng-model="contact.time" id="contactform-time" name="contactform-time" class="sm-form-control">
+										<option value="Morning">Morning</option>
+										<option value="Afternoon">Afternoon</option>
+									</select>
+								</div>
+								<div class="clear"></div>
+								<div class="col_full">
+									<label for="contactform-message">Message <small>*</small></label>
+									<textarea ng-model="contact.message" class="required sm-form-control" id="contact_message" name="contact_message" rows="6" cols="30" required></textarea>
+									<div ng-messages="contactform.contact_message.$error" ng-show="contactform.contact_message.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+								<div class="col_full">
+									<button ng-click="send()" ng-disabled="contactform.$invalid" class="button nomargin center" id="contactform-submit" name="contactform-submit" value="submit">Send Message</button>
+								</div>
+							</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- Modal Contact Form End -->
+
+		<!-- Content
+		============================================= -->
+		<section id="content" style="overflow: visible;">
+
+			<div class="content-wrap">
+
+				<div class="promo promo-dark promo-full landing-promo header-stick">
+					<div class="container clearfix">
+						<h3>Friendly Staff. Beautiful Smiles. Welcoming Environment <i class="icon-circle-arrow-right" style="position:relative;top:2px;"></i></h3>
+						<span>We are always welcoming new patients and we would love to have you as part of our dental family</span>
+					</div>
+				</div>
+
+				<div class="container clearfix">
+
+					<div class="clear bottommargin-lg"></div>
+
+					<div id="section-specials" class="heading-block title-center page-section">
+						<h2>Current Specials</h2>
+						<span>Specials for all new patients. Ends Dec 31 2015!</span>
+					</div>
+
+					<div class="pricing bottommargin clearfix">
+
+						<div class="col-md-3">
+
+							<div class="pricing-box">
+								<div class="pricing-title">
+									<h3>New Patients</h3>
+								</div>
+								<div class="pricing-price">
+									<span class="price-unit">&dollar;</span>49</span>
+								</div>
+								<div class="pricing-features">
+									<ul>
+										<li>Comprehensive oral exam</li>
+										<li>x-rays</li>
+										<li><i>Not to be combined with other offers or with insurance benefits</i></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3">
+
+							<div class="pricing-box best-price">
+								<div class="pricing-title">
+									<h3>ORTHO</h3>
+									<span>Consultation</span>
+								</div>
+								<div class="pricing-price">
+									<span class="price-unit"></span>FREE</span>
+								</div>
+								<div class="pricing-features">
+									<ul>
+										<li><strong>Full</strong> oral examination</li>
+										<li>Treatment Options</li>
+										<li>Consultation</li>
+										<li><i class="icon-star3"></i>
+										<i class="icon-star3"></i>
+										<i class="icon-star3"></i>
+										<i class="icon-star3"></i>
+										<i class="icon-star3"></i></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-3">
+							<div class="pricing-box">
+								<div class="pricing-title">
+									<h3>Braces</h3>
+								</div>
+								<div class="pricing-price">
+									<span class="price-unit">&dollar;</span>500<span class="price-tenure">/off</span>
+								</div>
+								<div class="pricing-features">
+									<ul>
+										<li>Beautiful Smile</li>
+										<li>Affordable Price</li>
+										<li><i>Speak to our friendly office staff for more infornation!</i></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="pricing-box">
+								<div class="pricing-title">
+									<h3>Whitening</h3>
+								</div>
+								<div class="pricing-price">
+									<span class="price-unit">&dollar;</span>249</span>
+								</div>
+								<div class="pricing-features">
+									<ul>
+										<li>Regular value of $578</li>
+										<li>Brighter Smiles, 1 hr or less</li>
+										<li><i>Not to be combined with other offers or with insurance benefits</i></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" style="text-align: center"><h1>Call Us now  (831) 240-0865</h1></div>
+					</div>
+				</div>
+
+
+				<div class="section">
+					<div class="container clearfix">
+						<div id="section-testimonials" class="heading-block title-center page-section">
+							<h2>Testimonials</h2>
+							<span>What our patients say</span>
+						</div>
+						<ul class="testimonials-grid grid-3 clearfix">
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>I am absolutely certain that I am in the best of care for my teeth with Dr. James D Kim. Thank you Dr. Kim!</p>
+										<div class="testi-meta">
+											Norma V.
+											<span>Aromas, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>His staff is amazing. So friendly, warm, and welcoming. I was not embarrassed, nor did I not feel judged. Dr. Kim and his assistant, Stephanie were extremely gently and worked with my issues (tmj), and Tina, she was awesome. </p>
+										<div class="testi-meta">
+											Ashley W.
+											<span>Salinas, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>This is my first visit to Dr. Kim's office...Nice clean office, helpful and courteous staff, and Dr. Kim himself is great! He takes time to explain the plan of care and gives fair recommendations</p>
+										<div class="testi-meta">
+											Alex S.
+											<span>Capitola, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>Office is very clean and it's nice being able to watch TV while you get work done. Office staff was very friendly and dr. Kim was amazing. They all were very friendly to my little one and Dr cam was great with checking her.</p>
+										<div class="testi-meta">
+											Julie W.
+											<span>San Francisco, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>Dr. Kim is as good as it gets. He has a wonderful staff that always makes me feel welcome and at ease, and they makes the insurance and billing process a breeze! I always know exactly how my benefits are being used and what I'm paying out of pocket for various procedures. </p>
+										<div class="testi-meta">
+											Kellsy P.
+											<span>Monterey, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="testimonial">
+									<div class="testi-image">
+										<a href="#"><img src="{% static 'images/testimonials/1.jpg' %}" alt="Customer Testimonails"></a>
+									</div>
+									<div class="testi-content">
+										<p>Dr. Kim and his staff are the absolute best! I moved to this area a year and a half ago and wanted to get braces; so I did my research and had a couple of consultations around the area. After going to Dr. Kim's office I knew this would be the place! They have the friendliest staff, always making you feel super comfortable, and professional like always.</p>
+										<div class="testi-meta">
+											Ely C.
+											<span>Salinas, CA</span>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+
+				</div>
+
+				<div class="container clearfix">
+					<div id="section-about" class="heading-block title-center page-section">
+						<h2>About Gonzales Dental Care</h2>
+						<span>We'll provide your winning smiles</span>
+					</div>
+
+					<div id="side-navigation">
+						<div class="col_one_third">
+							<ul class="sidenav">
+								<li class="ui-tabs-active"><a href="#snav-content1"><i class="icon-screen"></i>About Our Office<i class="icon-chevron-right"></i></a></li>
+								<li><a href="#snav-content2"><i class="icon-adjust"></i>Our services<i class="icon-chevron-right"></i></a></li>
+								<li><a href="#snav-content3"><i class="icon-magic"></i>6 Month Smiles<i class="icon-chevron-right"></i></a></li>
+								<li><a href="#snav-content4"><i class="icon-tint"></i>Quality Dental Care<i class="icon-chevron-right"></i></a></li>
+							</ul>
+
+						</div>
+
+						<div class="col_two_third col_last">
+
+							<div id="snav-content1">
+								<iframe  src="https://www.youtube.com/embed/zzeGrIUzxCI" frameborder="0" allowfullscreen></iframe>
+							</div>
+
+							<div id="snav-content2">
+								<h3>List of services we provide</h3>
+								<div class="col_half nobottommargin">
+									<ul class="iconlist nobottommargin">
+										<li><i class="icon-ok"></i> Bridges</li>
+										<li><i class="icon-ok"></i> Crowns</li>
+										<li><i class="icon-ok"></i> Dental Hygiene and Periodontal Health</li>
+										<li><i class="icon-ok"></i> Whitening and Bleaching</li>
+										<li><i class="icon-ok"></i> Extraction Site Preservation</li>
+									</ul>
+
+								</div>
+								<div class="col_half nobottommargin col_last">
+									<ul class="iconlist nobottommargin">
+										<li><i class="icon-ok"></i> Dentures</li>
+										<li><i class="icon-ok"></i> Extractions</li>
+										<li><i class="icon-ok"></i> Inlays and Onlays</li>
+										<li><i class="icon-ok"></i> Bonding and White Filling</li>
+										<li><i class="icon-ok"></i> Night Guards</li>
+										<li><i class="icon-ok"></i> TMJ</li>
+									</ul>
+
+								</div>
+								<p>If you have any questions please call us at (831) 240-0865. We love hearing from our patients and anyone who may be interested in becoming one.</p>
+							</div>
+
+							<div id="snav-content3">
+								<img class="alignleft img-responsive" src="{% static 'images/powerprox_thumb.png' %}" alt="Powerprox Six Month Braces® Technique">
+								<h3>Powerprox Six Month Braces® Technique</h3>The Powerprox Six Month Braces® Technique is a fast, affordable way to give you the smile you always wanted in just six months – that’s right, six months! The Powerprox Six Month Braces® Technique will move your front teeth to their most beautiful position giving you a great smile. Whether your teeth are crowded together, overlapped, or have spaces between them, the Powerprox Six Month Braces® Technique will give you the smile you always wanted in just six months. This technique was developed by Dr. Richard DePaul, Jr. and we are currently the only one certified around the Monterey Bay area.
+
+Please give us a call to schedule your free consultation appointment to see if six month braces would be a great fit for you!
+
+<a href="http://www.sixmonthbraces.com" target="_blank">Click Here to get more information on Six Month Braces</a>
+							</div>
+
+							<div id="snav-content4">
+								<img class="alignleft img-responsive" src="{% static 'images/qdp_logo.png' %}" alt="">
+								<h3>Want Affordable Dental Benefits?</h3>
+								Did you know that we offer an in-house dental savings plan right here in our practice – for both new and existing patients? We understand that traditional dental insurance premiums are expensive, and that insurance benefits are extremely limited on most plans. The good news is that as a member of Quality Dental Plan, all of your preventive care (including cleanings, x-rays and exams) is 100% covered in our office – and you’ll also receive valuable member benefits on restorative care, like fillings, crowns and implants…even cosmetic dentistry!
+
+<p>We know that paying out of pocket can be expensive, so we’ve partnered with Quality Dental Plan to give our patients the kind of dental benefits they want and need. Now you can afford dentistry – and you can have the smile you’ve always wanted. Ask us today about Quality Dental Plan and how it can help make taking care of your smile affordable for you and your whole family! Call our office today at (831) 675-6140 and start saving on quality dental care today.</p>
+							</div>
+						</div>
+
+					</div>
+
+					<script>
+					  $(function() {
+						$( "#side-navigation" ).tabs({ show: { effect: "fade", duration: 400 } });
+					  });
+					</script>
+
+				</div>
+				<div class="section footer-stick">
+					<div class="container clearfix" id="section-contact">
+						<!-- Contact Form
+						============================================= -->
+						<div class="col_half">
+							<h3>Send us an Email or Call (831) 240-0865</h3>
+							<div id="contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
+
+							<form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php" method="post">
+
+								<div class="form-process"></div>
+
+								<div class="col_one_third">
+									<label for="template-contactform-name">Name <small>*</small></label>
+									<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+								</div>
+
+								<div class="col_one_third">
+									<label for="template-contactform-email">Email <small>*</small></label>
+									<input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+								</div>
+
+								<div class="col_one_third col_last">
+									<label for="template-contactform-phone">Phone</label>
+									<input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
+								</div>
+								<div class="clear"></div>
+								<div class="col_full">
+									<label for="template-contactform-message">Message <small>*</small></label>
+									<textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+								</div>
+
+								<div class="col_full hidden">
+									<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
+								</div>
+
+								<div class="col_full">
+									<button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
+								</div>
+
+							</form>
+
+							<script type="text/javascript">
+
+								$("#template-contactform").validate({
+									submitHandler: function(form) {
+										$('.form-process').fadeIn();
+										$(form).ajaxSubmit({
+											target: '#contact-form-result',
+											success: function() {
+												$('.form-process').fadeOut();
+												$('#template-contactform').find('.sm-form-control').val('');
+												$('#contact-form-result').attr('data-notify-msg', $('#contact-form-result').html()).html('');
+												SEMICOLON.widget.notifications($('#contact-form-result'));
+											}
+										});
+									}
+								});
+
+							</script>
+
+						</div><!-- Contact Form End -->
+
+						<!-- Google Map
+						============================================= -->
+						<div class="col_half col_last">
+							<section id="google-map" class="gmap" style="height: 410px;"></section>
+							<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+							<script type="text/javascript" src="{% static 'js/jquery.gmap.js' %}"></script>
+							<script type="text/javascript">
+								jQuery('#google-map').gMap({
+
+									address: '851-H 5th Street, Gonzales, CA 93926',
+									maptype: 'ROADMAP',
+									zoom: 14,
+									markers: [
+										{
+											address: "851-H 5th Street, Gonzales, CA 93926",
+											html: '<div style="width: 300px;"><h4 style="margin-bottom: 8px;">Hi, we\'re <span>Gonzales Dental Care</span></h4><p class="nobottommargin">Friendly Staff. Beautiful Smiles. Welcoming Environment.</p></div>',
+											icon: {
+												image: "{% static 'images/icons/map-icon-red.png' %}",
+												iconsize: [32, 39],
+												iconanchor: [32,39]
+											}
+										}
+									],
+									doubleclickzoom: false,
+									controls: {
+										panControl: true,
+										zoomControl: true,
+										mapTypeControl: true,
+										scaleControl: false,
+										streetViewControl: false,
+										overviewMapControl: false
+									}
+
+								});
+
+							</script>
+						</div><!-- Google Map End -->
+					</div>
+				</div>
+			</div>
+		</section><!-- #content end -->
+
+		<!-- Footer
+		============================================= -->
+		<footer id="footer" class="dark">
+
+			<div class="container">
+
+				<!-- Footer Widgets
+				============================================= -->
+				<div class="footer-widgets-wrap clearfix">
+
+					<div class="col_two_third">
+
+						<div class="col_one_third">
+
+							<div class="widget clearfix">
+
+								<img src="{% static 'images/footer-widget-logo.png' %}" alt="" class="footer-logo">
+								<div style="background: url({% static 'images/world-map.png' %}') no-repeat center center; background-size: 100%;">
+									<address>
+										<strong>Gonzales Dental Care</strong><br>
+										851-H 5th Street<br>
+										Gonzales, CA 93926<br>
+									</address>
+									<abbr title="Phone Number"><strong>Phone:</strong></abbr>  (831)-240-0865<br>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col_one_third">
+
+							<div class="widget clearfix">
+
+								<h4>Patient Forms</h4>
+
+								<div id="post-list-footer">
+									<div class="spost clearfix">
+										<div class="entry-c">
+											<div class="entry-title">
+												<h4>Registration Form</h4>
+											</div>
+											<ul class="entry-meta">
+												<li><a href="{% static 'docs/patientregistration.pdf' %}">English</a></li>
+												<li><a href="{% static 'docs/patientregistration_spanish.pdf' %}">Español</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col_one_third col_last">
+
+							<div class="widget widget_links clearfix">
+
+								<h4>Navigation</h4>
+
+								<ul>
+									<li><a href="#" data-href="#section-about"><div>About</div></a></li>
+									<li><a href="#" data-href="#section-specials"><div>Specials</div></a></li>
+									<li><a href="#" data-href="#section-testimonials"><div>Testimonials</div></a></li>
+									<li><a href="#" data-href="#section-contact"><div>Contact</div></a></li>
+								</ul>
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="col_one_third col_last">
+
+						<div class="widget clearfix" style="margin-bottom: -20px;">
+							<div class="row">
+								<div class="col-md-6 clearfix bottommargin-sm">
+									<a href="https://www.facebook.com/GonzalesDentalCare/" class="social-icon si-dark si-colored si-facebook nobottommargin" style="margin-right: 10px;">
+										<i class="icon-facebook"></i>
+										<i class="icon-facebook"></i>
+									</a>
+									<a href="https://www.facebook.com/GonzalesDentalCare/" target="_blank"><small style="display: block; margin-top: 3px;"><strong>Like us</strong><br>on Facebook</small></a>
+								</div>
+								<div class="col-md-6 clearfix">
+									<a href="https://plus.google.com/+Gonzalesdentalcare" class="social-icon si-dark si-colored si-gplus nobottommargin" style="margin-right: 10px;">
+										<i class="icon-gplus"></i>
+										<i class="icon-gplus"></i>
+									</a>
+									<a href="https://plus.google.com/+Gonzalesdentalcare"><small style="display: block; margin-top: 3px;"><strong>Find Us</strong><br>on Google+</small></a>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+				</div><!-- .footer-widgets-wrap end -->
+
+			</div>
+
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container clearfix">
+					<div class="col_half">
+						Copyrights &copy; 2014 All Rights Reserved by Gonzales Dental Care<br ?>
+					</div>
+				</div>
+
+			</div><!-- #copyrights end -->
+
+		</footer><!-- #footer end -->
+
+	</div><!-- #wrapper end -->
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script type="text/javascript" src="{% static 'js/functions.js' %}"></script>
+
+</body>
+</html>
