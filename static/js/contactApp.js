@@ -58,7 +58,6 @@ angular.module('avaApp', ['ngMessages'])
 
             }, function(response) {
                 // called asynchronously if an error occurs or server returns response with an error status.
-                // field parameters where missing
                 //console.log(response.data);
                 //$scope.server_error_msg = response.data.error.msg;
             });
