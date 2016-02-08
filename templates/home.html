@@ -98,7 +98,7 @@
 						Habla Español
 					</div>
 					<div class="col_full nobottommargin">
-						<a href="#" data-toggle="modal" data-target="#contactFormModal" class="btn btn-lg btn-danger btn-block nomargin">MAKE APPOINTMENT</a>
+						<a href="#" data-toggle="modal" data-target="#appointmentFormModal" class="btn btn-lg btn-danger btn-block nomargin">MAKE APPOINTMENT</a>
 					</div>
 				</form>
 
@@ -107,60 +107,60 @@
 
 		<!-- Appointment Form -->
 		<!-- modal contact form -->
-		<div ng-controller="contactFormController as contact" class="modal fade" id="contactFormModal" tabindex="-1" role="dialog" aria-labelledby="contactFormModalLabel" aria-hidden="true">
+		<div ng-controller="appointmentFormController as contact" class="modal fade" id="appointmentFormModal" tabindex="-1" role="dialog" aria-labelledby="appointmentFormModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="contactFormModalLabel">Make Appointment</h4>
+						<h4 class="modal-title" id="appointmentFormModalLabel">Make Appointment</h4>
 					</div>
 					<div class="modal-body" ng-show="is_sent">
 							Message sent. We'll get back to you shortly. You may close this dialog.
 					</div>
 					<div class="modal-body" ng-show="!is_sent">
-							<p>Fill out the form below and a member of our team will contact you within one (1) business day at the phone number provided to schedule your appointment. We will make every attempt possible to accommodate your appointment request and look forward to seeing you soon!</p>
-							<form class="nobottommargin" id="contactform" name="contactform" novalidate>
+							<p>We will do our best to contact you within one (1) business day at the phone number provided to schedule your appointment. We will make every attempt possible to accommodate your appointment request and look forward to seeing you soon!</p>
+							<form class="nobottommargin" id="appointmentForm" name="appointmentForm" novalidate>
 								{% csrf_token %}
 								<div class="form-process"></div>
 								<div class="col_half">
-									<label for="contactform-name">Name <small>*</small></label>
-									<input ng-model="contact.name" type="text" id="contactform-name" name="contact_name" class="sm-form-control required" required />
-									<div class="help-block" ng-messages="contactform.contact_name.$error" ng-show="contactform.contact_name.$touched">
+									<label for="appointmentForm-name">Name <small>*</small></label>
+									<input ng-model="contact.name" type="text" id="appointmentForm-name" name="contact_name" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_name.$error" ng-show="appointmentForm.contact_name.$touched">
 										<div ng-message="required">This field is required</div>
 									</div>
 								</div>
 								<div class="col_half col_last">
-									<label for="contactform-email">Email <small>*</small></label>
-									<input ng-model="contact.email" type="email" id="contactform-email" name="contact_email" class="required email sm-form-control" required />
-									<div class="help-block" ng-messages="contactform.contact_email.$error" ng-show="contactform.contact_email.$touched">
+									<label for="appointmentForm-email">Email <small>*</small></label>
+									<input ng-model="contact.email" type="email" id="appointmentForm-email" name="contact_email" class="required email sm-form-control" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_email.$error" ng-show="appointmentForm.contact_email.$touched">
 										<div ng-message="required">This field is required</div>
 										<div ng-message="email">Your email address is invalid</div>
 									</div>
 								</div>
 								<div class="col_half">
-									<label for="contactform-name">Phone Number <small>*</small></label>
-									<input ng-model="contact.phone" type="text" id="contactform-phone" name="contact_phone" class="sm-form-control required" required />
-									<div class="help-block" ng-messages="contactform.contact_phone.$error" ng-show="contactform.contact_phone.$touched">
+									<label for="appointmentForm-name">Phone Number <small>*</small></label>
+									<input ng-model="contact.phone" type="text" id="appointmentForm-phone" name="contact_phone" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_phone.$error" ng-show="appointmentForm.contact_phone.$touched">
 										<div ng-message="required">This field is required</div>
 									</div>
 								</div>
 								<div class="col_half col_last">
-									<label for="contactform-time">Preferred Time <small></small></label>
-									<select ng-model="contact.time" id="contactform-time" name="contactform-time" class="sm-form-control">
+									<label for="appointmentForm-time">Preferred Time <small></small></label>
+									<select ng-model="contact.time" id="appointmentForm-time" name="appointmentForm-time" class="sm-form-control">
 										<option value="Morning">Morning</option>
 										<option value="Afternoon">Afternoon</option>
 									</select>
 								</div>
 								<div class="clear"></div>
 								<div class="col_full">
-									<label for="contactform-message">Message <small>*</small></label>
+									<label for="appointmentForm-message">Message <small>*</small></label>
 									<textarea ng-model="contact.message" class="required sm-form-control" id="contact_message" name="contact_message" rows="6" cols="30" required></textarea>
-									<div ng-messages="contactform.contact_message.$error" ng-show="contactform.contact_message.$touched">
+									<div ng-messages="appointmentForm.contact_message.$error" ng-show="appointmentForm.contact_message.$touched">
 										<div ng-message="required">This field is required</div>
 									</div>
 								</div>
 								<div class="col_full">
-									<button ng-click="send()" ng-disabled="contactform.$invalid" class="button nomargin center" id="contactform-submit" name="contactform-submit" value="submit">Send Message</button>
+									<button ng-click="send()" ng-disabled="appointmentForm.$invalid" class="button nomargin center" id="appointmentForm-submit" name="appointmentForm-submit" value="submit">Send Message</button>
 								</div>
 							</form>
 					</div>
@@ -457,63 +457,48 @@ Please give us a call to schedule your free consultation appointment to see if s
 					<div class="container clearfix" id="section-contact">
 						<!-- Contact Form
 						============================================= -->
-						<div class="col_half">
+						<div class="col_half" ng-controller="contactusFormController as contactus">
 							<h3>Send us an Email or Call (831) 240-0865</h3>
-							<div id="contact-form-result" data-notify-type="success" data-notify-msg="<i class=icon-ok-sign></i> Message Sent Successfully!"></div>
+							<div id="contact-form-result" ng-show="is_sent" >Message Sent Successfully!</div>
 
-							<form class="nobottommargin" id="template-contactform" name="template-contactform" action="include/sendemail.php" method="post">
-
+							<form class="nobottommargin" ng-show="!is_sent" id="contactForm" name="contactForm" novalidate>
+								{% csrf_token %}
 								<div class="form-process"></div>
-
 								<div class="col_one_third">
 									<label for="template-contactform-name">Name <small>*</small></label>
-									<input type="text" id="template-contactform-name" name="template-contactform-name" value="" class="sm-form-control required" />
+									<input ng-model="contactus.fullname" type="text" id="contactus_fullname" name="contactus_fullname" value="" class="sm-form-control" required />
+									<div class="help-block" ng-messages="contactForm.contactus_fullname.$error" ng-show="contactForm.contactus_fullname.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
 								</div>
-
 								<div class="col_one_third">
 									<label for="template-contactform-email">Email <small>*</small></label>
-									<input type="email" id="template-contactform-email" name="template-contactform-email" value="" class="required email sm-form-control" />
+									<input ng-model="contactus.email" type="email" id="contactus_email" name="contactus_email" value="" class="sm-form-control" required />
+									<div class="help-block" ng-messages="contactForm.contactus_email.$error" ng-show="contactForm.contactus_email.$touched">
+										<div ng-message="required">This field is required</div>
+										<div ng-message="email">Your email address is invalid</div>
+									</div>
 								</div>
 
 								<div class="col_one_third col_last">
 									<label for="template-contactform-phone">Phone</label>
-									<input type="text" id="template-contactform-phone" name="template-contactform-phone" value="" class="sm-form-control" />
+									<input ng-model="contactus.phone" type="text" id="contactus_phone" name="contactus_phone" value="" class="sm-form-control" required />
+									<div class="help-block" ng-messages="contactForm.contactus_phone.$error" ng-show="contactForm.contactus_phone.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
 								</div>
 								<div class="clear"></div>
 								<div class="col_full">
 									<label for="template-contactform-message">Message <small>*</small></label>
-									<textarea class="required sm-form-control" id="template-contactform-message" name="template-contactform-message" rows="6" cols="30"></textarea>
+									<textarea ng-model="contactus.message" class="required sm-form-control" id="contactus_message" name="contactus_message" rows="6" cols="30" required></textarea>
+									<div class="help-block" ng-messages="contactForm.contactus_message.$error" ng-show="contactForm.contactus_message.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
 								</div>
-
-								<div class="col_full hidden">
-									<input type="text" id="template-contactform-botcheck" name="template-contactform-botcheck" value="" class="sm-form-control" />
-								</div>
-
 								<div class="col_full">
-									<button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
+									<button ng-click="send()" ng-disabled="contactForm.$invalid" name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
 								</div>
-
 							</form>
-
-							<script type="text/javascript">
-
-								$("#template-contactform").validate({
-									submitHandler: function(form) {
-										$('.form-process').fadeIn();
-										$(form).ajaxSubmit({
-											target: '#contact-form-result',
-											success: function() {
-												$('.form-process').fadeOut();
-												$('#template-contactform').find('.sm-form-control').val('');
-												$('#contact-form-result').attr('data-notify-msg', $('#contact-form-result').html()).html('');
-												SEMICOLON.widget.notifications($('#contact-form-result'));
-											}
-										});
-									}
-								});
-
-							</script>
-
 						</div><!-- Contact Form End -->
 
 						<!-- Google Map
