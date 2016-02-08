@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="{% static 'css/font-icons.css' %}" type="text/css" />
 	<link rel="stylesheet" href="{% static 'css/animate.css' %}" type="text/css" />
 	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'css/angular-busy.min.css' %}" type="text/css" />
 
 	<link rel="stylesheet" href="{% static 'css/responsive.css' %}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,6 +30,7 @@
 	<script type="text/javascript" src="{% static 'js/angular.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/angular-messages.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/contactApp.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/angular-busy.min.js' %}"></script>
 	<!-- Document Title
 	============================================= -->
 	<title>Gonzales Family Dental Care, Dr. Kim</title>
@@ -107,8 +109,13 @@
 
 		<!-- Appointment Form -->
 		<!-- modal contact form -->
-		<div ng-controller="appointmentFormController as contact" class="modal fade" id="appointmentFormModal" tabindex="-1" role="dialog" aria-labelledby="appointmentFormModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
+		<div
+			ng-controller="appointmentFormController as contact"
+			class="modal fade" id="appointmentFormModal"
+			tabindex="-1" role="dialog"
+			aria-labelledby="appointmentFormModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" cg-busy="{promise:appointmentPromise,templateUrl:'{% static 'html/busy.html' %}'}">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -461,7 +468,7 @@ Please give us a call to schedule your free consultation appointment to see if s
 							<h3>Send us an Email or Call (831) 240-0865</h3>
 							<div id="contact-form-result" ng-show="is_sent" >Message Sent Successfully!</div>
 
-							<form class="nobottommargin" ng-show="!is_sent" id="contactForm" name="contactForm" novalidate>
+							<form class="nobottommargin" ng-show="!is_sent" id="contactForm" name="contactForm" novalidate cg-busy="{promise:contactPromise,templateUrl:'{% static 'html/busy.html' %}'}">
 								{% csrf_token %}
 								<div class="form-process"></div>
 								<div class="col_one_third">
@@ -598,27 +605,19 @@ Please give us a call to schedule your free consultation appointment to see if s
 						</div>
 
 						<div class="col_one_third col_last">
-
 							<div class="widget widget_links clearfix">
-
 								<h4>Navigation</h4>
-
-								<ul>
+								<ul  class="one-page-menu">
 									<li><a href="#" data-href="#section-about"><div>About</div></a></li>
 									<li><a href="#" data-href="#section-specials"><div>Specials</div></a></li>
 									<li><a href="#" data-href="#section-testimonials"><div>Testimonials</div></a></li>
 									<li><a href="#" data-href="#section-contact"><div>Contact</div></a></li>
 								</ul>
-
-
 							</div>
-
 						</div>
-
 					</div>
 
 					<div class="col_one_third col_last">
-
 						<div class="widget clearfix" style="margin-bottom: -20px;">
 							<div class="row">
 								<div class="col-md-6 clearfix bottommargin-sm">

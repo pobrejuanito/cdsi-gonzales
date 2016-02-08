@@ -1,4 +1,4 @@
-angular.module('avaApp', ['ngMessages'])
+angular.module('avaApp', ['ngMessages','cgBusy'])
     .config(function($interpolateProvider, $httpProvider) {
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -16,7 +16,7 @@ angular.module('avaApp', ['ngMessages'])
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             };
 
-            $scope.myPromise = $http(req).then(function(response) {
+            $scope.appointmentPromise = $http(req).then(function(response) {
 
                 $scope.is_sent = true;
                 // this callback will be called asynchronously, when the response is available
@@ -48,7 +48,7 @@ angular.module('avaApp', ['ngMessages'])
             };
 
 
-            $scope.myPromise = $http(req).then(function(response) {
+            $scope.contactPromise = $http(req).then(function(response) {
 
                 $scope.is_sent = true;
                 // this callback will be called asynchronously, when the response is available
