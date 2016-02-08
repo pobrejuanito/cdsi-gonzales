@@ -17,8 +17,8 @@ def index(request):
         message += 'Email: ' + request.POST.get('email') + "\n"
         message += 'Time: ' + request.POST.get('time') + "\n"
         message += 'Message: ' + request.POST.get('message') + "\n\n"
-        message += "Sincerely, Gonzales Dental Messenger"
-        send_mail('An appointment request from Gonzales Dental Care Website', message,  request.POST.get('email'), ['pobrejuanito@gmail.com'], fail_silently=False)
+        message += settings.EMAIL_SIGNATURE
+        send_mail(settings.EMAIL_APPOINTMENT_SUBJECT, message,  request.POST.get('email'), [settings.EMAIL_TO], fail_silently=False)
         return JsonResponse({})
 
     page_data.update(csrf(request))
@@ -32,8 +32,8 @@ def sendmessage(request):
         message += 'Phone: ' + request.POST.get('phone') + "\n"
         message += 'Email: ' + request.POST.get('email') + "\n"
         message += 'Message: ' + request.POST.get('message') + "\n\n"
-        message += "Sincerely, Gonzales Dental Messenger"
-        send_mail('An message from Gonzales Dental Care Website', message,  request.POST.get('email'), ['pobrejuanito@gmail.com'], fail_silently=False)
+        message += settings.EMAIL_SIGNATURE
+        send_mail(settings.EMAIL_CONTACTUS_SUBJECT, message,  request.POST.get('email'), [settings.EMAIL_TO], fail_silently=False)
     return JsonResponse({})
 
 def handler404(request):
