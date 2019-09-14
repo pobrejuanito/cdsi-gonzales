@@ -6,7 +6,7 @@ class CustomCaptchaTextInput(CaptchaTextInput):
    template_name = 'captcha_field.html'
 
 class CaptchaContactForm(forms.Form):
-   captcha = CaptchaField(id_prefix='asdf', widget=CustomCaptchaTextInput(attrs={'id':'contact'}))
+   captcha = CaptchaField(widget=CustomCaptchaTextInput(attrs={'id':'contact'}))
 
 class CaptchaAppointmentForm(forms.Form):
    captcha = CaptchaField(widget=CustomCaptchaTextInput(attrs={'id':'appointment'}))   
