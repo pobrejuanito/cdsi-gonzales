@@ -30,12 +30,14 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+   'django.contrib.admin',
+   'django.contrib.auth',
+   'django.contrib.contenttypes',
+   'django.contrib.sessions',
+   'django.contrib.messages',
+   'django.contrib.staticfiles',
+   'captcha',
+   'django.forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,7 +101,11 @@ CSRF_COOKIE_SECURE = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-
+# CAPTCHA 
+CAPTCHA_LETTER_ROTATION = None
+CAPTCHA_FONT_SIZE = 28
+CAPTCHA_FOREGROUND_COLOR = '#000000'
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 
 try:

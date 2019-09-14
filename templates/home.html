@@ -104,11 +104,9 @@
 						<a href="#" data-toggle="modal" data-target="#appointmentFormModal" class="btn btn-lg btn-danger btn-block nomargin">MAKE APPOINTMENT</a>
 					</div>
 				</form>
-
 			</div>
 		</section>
 
-		<!-- Appointment Form -->
 		<!-- modal contact form -->
 		<div
 			ng-controller="appointmentFormController as contact"
@@ -167,6 +165,13 @@
 										<div ng-message="required">This field is required</div>
 									</div>
 								</div>
+                        <div class="col_full">
+                           <div class="form-group" style="color: #000000;">
+                           If you are human, enter the captcha letters in the text box Captcha:
+                              {{ form }}
+                           </div>
+                           <div id="contact-form-result" ng-show="captcha0_error" >Invalid Capcha. Please try again.</div>
+                        </div>
 								<div class="col_full">
 									<button ng-click="send()" ng-disabled="appointmentForm.$invalid" class="button nomargin center" id="appointmentForm-submit" name="appointmentForm-submit" value="submit">Send Message</button>
 								</div>
@@ -511,6 +516,14 @@ changing field of modern dentistry.</span>
 										<div ng-message="required">This field is required</div>
 									</div>
 								</div>
+                        <div class="col_full">
+                           <div class="form-group">
+                              <div style="color: #000000;">If you are human, enter the captcha letters in the text box
+                                 {{ contactForm }}
+                              </div>
+                           </div>
+                           <div id="contact-form-result" ng-show="captcha_error" >Invalid Capcha. Please try again.</div>
+                        </div>
 								<div class="col_full">
 									<button ng-click="send()" ng-disabled="contactForm.$invalid" name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
 								</div>

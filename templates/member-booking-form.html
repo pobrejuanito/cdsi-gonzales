@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!-- Appointment Form -->
+		<!-- modal contact form -->
+		<div
+			ng-controller="appointmentFormController as contact"
+			class="modal fade" id="appointmentFormModal"
+			tabindex="-1" role="dialog"
+			aria-labelledby="appointmentFormModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" cg-busy="{promise:appointmentPromise,templateUrl:'{% static 'html/busy.html' %}'}">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="appointmentFormModalLabel">Make Appointment</h4>
+					</div>
+					<div class="modal-body" ng-show="is_sent">
+							Message sent. We'll get back to you shortly. You may close this dialog.
+					</div>
+					<div class="modal-body" ng-show="!is_sent">
+							<p>We will do our best to contact you within one (1) business day at the phone number provided to schedule your appointment. We will make every attempt possible to accommodate your appointment request and look forward to seeing you soon!</p>
+							<form class="nobottommargin" id="appointmentForm" name="appointmentForm" novalidate>
+								{% csrf_token %}
+								<div class="form-process"></div>
+								<div class="col_half">
+									<label for="appointmentForm-name">Name <small>*</small></label>
+									<input ng-model="contact.name" type="text" id="appointmentForm-name" name="contact_name" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_name.$error" ng-show="appointmentForm.contact_name.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+								<div class="col_half col_last">
+									<label for="appointmentForm-email">Email <small>*</small></label>
+									<input ng-model="contact.email" type="email" id="appointmentForm-email" name="contact_email" class="required email sm-form-control" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_email.$error" ng-show="appointmentForm.contact_email.$touched">
+										<div ng-message="required">This field is required</div>
+										<div ng-message="email">Your email address is invalid</div>
+									</div>
+								</div>
+								<div class="col_half">
+									<label for="appointmentForm-name">Phone Number <small>*</small></label>
+									<input ng-model="contact.phone" type="text" id="appointmentForm-phone" name="contact_phone" class="sm-form-control required" required />
+									<div class="help-block" ng-messages="appointmentForm.contact_phone.$error" ng-show="appointmentForm.contact_phone.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+								<div class="col_half col_last">
+									<label for="appointmentForm-time">Preferred Time <small></small></label>
+									<select ng-model="contact.time" id="appointmentForm-time" name="appointmentForm-time" class="sm-form-control">
+										<option value="Morning">Morning</option>
+										<option value="Afternoon">Afternoon</option>
+									</select>
+								</div>
+								<div class="clear"></div>
+								<div class="col_full">
+									<label for="appointmentForm-message">Message <small>*</small></label>
+									<textarea ng-model="contact.message" class="required sm-form-control" id="contact_message" name="contact_message" rows="6" cols="30" required></textarea>
+									<div ng-messages="appointmentForm.contact_message.$error" ng-show="appointmentForm.contact_message.$touched">
+										<div ng-message="required">This field is required</div>
+									</div>
+								</div>
+                        <div class="col_full">
+                           <div class="form-group" style="color: #000000;">
+                           If you are human, enter the captcha letters in the text box Captcha:
+                              {{ form }}
+                           </div>
+                           <div id="contact-form-result" ng-show="captcha0_error" >Invalid Capcha. Please try again.</div>
+                        </div>
+								<div class="col_full">
+									<button ng-click="send()" ng-disabled="appointmentForm.$invalid" class="button nomargin center" id="appointmentForm-submit" name="appointmentForm-submit" value="submit">Send Message</button>
+								</div>
+							</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- Modal Contact Form End -->

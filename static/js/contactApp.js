@@ -6,23 +6,35 @@ angular.module('avaApp', ['ngMessages','cgBusy'])
         $interpolateProvider.endSymbol('$}');
     })
     .controller('appointmentFormController', function($scope, $http) {
-
+        $scope.captcha0_error = false;
         $scope.is_sent = false;
         $scope.send = function() {
+    
+         $scope.contact.captcha_0 = document.getElementById('appointment_0').value;
+         $scope.contact.captcha_1 = document.getElementById('appointment_1').value;
+         
             var req = {
                 method: 'POST',
-                url: '/',
+                url: '/member-booking-form/',
                 data: $.param($scope.contact),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             };
 
             $scope.appointmentPromise = $http(req).then(function(response) {
+               var data = response.data;
 
-                $scope.is_sent = true;
-                // this callback will be called asynchronously, when the response is available
-                $scope.server_error_msg = '';
-                //$scope.hasError = false;
-                //$location.path('/done');
+               if (data.status == 1) {
+                  $scope.is_sent = true;
+               } else {
+                  document.getElementsByClassName('captcha')[0].src = data.new_cptch_image;
+                  var contact0Key = document.getElementById('appointment_0');
+                  contact0Key.value = data.new_cptch_key;
+
+                  var contact1Key = document.getElementById('appointment_1');
+                  contact1Key.value = '';
+
+                  $scope.captcha0_error = true;
+               }
 
             }, function(response) {
                 // called asynchronously if an error occurs or server returns response with an error status.
@@ -36,9 +48,12 @@ angular.module('avaApp', ['ngMessages','cgBusy'])
         };
     })
     .controller('contactusFormController', function($scope, $http) {
-
+        $scope.captcha_error = false;
         $scope.is_sent = false;
         $scope.send = function() {
+            
+         $scope.contactus.captcha_0 = document.getElementById('contact_0').value;
+         $scope.contactus.captcha_1 = document.getElementById('contact_1').value;
 
             var req = {
                 method: 'POST',
@@ -50,11 +65,19 @@ angular.module('avaApp', ['ngMessages','cgBusy'])
 
             $scope.contactPromise = $http(req).then(function(response) {
 
-                $scope.is_sent = true;
-                // this callback will be called asynchronously, when the response is available
-                $scope.server_error_msg = '';
-                //$scope.hasError = false;
-                //$location.path('/done');
+               var data = response.data;
+               if (data.status == 1) {
+                  $scope.is_sent = true;
+               } else {
+                  document.getElementsByClassName('captcha')[1].src = data.new_cptch_image;
+                  var contact0Key = document.getElementById('contact_0');
+                  contact0Key.value = data.new_cptch_key;
+
+                  var contact1Key = document.getElementById('contact_1');
+                  contact1Key.value = '';
+
+                  $scope.captcha_error = true;
+               }
 
             }, function(response) {
                 // called asynchronously if an error occurs or server returns response with an error status.
