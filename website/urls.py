@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^captcha/', include('captcha.urls')),
     url(r'^privacy-policy.html', TemplateView.as_view(template_name="privacy-policy.html")),
     url(r'^sendmessage/', views.sendmessage, name='sendmessage'),
-    url(r'^member-booking-form/', views.bookingform, name='bookingform'),11
+    url(r'^member-booking-form/', views.bookingform, name='bookingform'),
 ]
